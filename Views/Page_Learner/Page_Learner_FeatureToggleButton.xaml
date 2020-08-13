@@ -1,0 +1,38 @@
+﻿<UserControl x:Class="Mastear.Views.Page_Learner.Page_Learner_FeatureToggleButton"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Mastear.Views.Page_Learner"
+             mc:Ignorable="d" Opacity="0.8">
+    
+    <UserControl.Style>
+        <Style>
+            <Style.Triggers>
+                <!-- 마우스 오버 이펙트 -->
+                <Trigger Property="UserControl.IsMouseOver" Value="True">
+                    <Setter Property="UserControl.Cursor" Value="Hand"/>
+                    <Trigger.EnterActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation To="1" Storyboard.TargetProperty="Opacity" Duration="0:0:0.2"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.EnterActions>
+
+                    <Trigger.ExitActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation To="0.8" Storyboard.TargetProperty="Opacity" Duration="0:0:0.2"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.ExitActions>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Style>
+
+    <Border Name="xml_Body" CornerRadius="10" BorderThickness="2" BorderBrush="White" Margin="5">
+        <TextBlock Name="xml_Text" FontSize="{Binding RelativeSource={RelativeSource AncestorType=UserControl},Path=FontSize}" Foreground="Black" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="5"/>
+    </Border>
+</UserControl>

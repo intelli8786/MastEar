@@ -1,0 +1,45 @@
+﻿<Window x:Class="Mastear.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Mastear"
+        xmlns:math="http://hexinnovation.com/math"
+        mc:Ignorable="d"
+        Title="Platform" WindowState="Maximized" WindowStyle="None">
+    <Window.Resources>
+        <!-- MathConverter 선언 -->
+        <math:MathConverter x:Key="math" />
+    </Window.Resources>
+
+    <!-- 현재 최대화 사이즈의 2배로 설정 -->
+    <Window.Style>
+        <Style>
+            <Setter Property="Window.Height" Value="{Binding Source={x:Static SystemParameters.PrimaryScreenHeight}}"/>
+            <Setter Property="Window.Width" Value="{Binding Source={x:Static SystemParameters.PrimaryScreenWidth}}"/>
+        </Style>
+    </Window.Style>
+
+    <!-- 실제 플랫폼 레이아웃 -->
+    <Grid>
+        <ScrollViewer x:Name="xml_Scroll" VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Hidden">
+            <Grid
+            Height="{Binding Source={x:Static SystemParameters.PrimaryScreenHeight}}"
+            Width="{Binding Source={x:Static SystemParameters.WorkArea}, Path=Width, Converter={StaticResource math}, ConverterParameter=x*3}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <Grid Name="xml_View1" Grid.Column="0"/>
+                <Grid Name="xml_View2" Grid.Column="1"/>
+                <Grid Name="xml_View3" Grid.Column="2"/>
+            </Grid>
+        </ScrollViewer>
+
+        <!-- 스크롤 애니메이션을 위한 바인딩 -->
+        <local:ScrollViewerOffsetMediator
+            x:Name="Mediator"
+            ScrollViewer="{Binding ElementName=xml_Scroll}"/>
+    </Grid>
+</Window>

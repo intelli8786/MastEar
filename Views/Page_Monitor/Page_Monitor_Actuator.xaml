@@ -1,0 +1,60 @@
+﻿<UserControl x:Class="Mastear.Views.Page_Monitor.Page_Monitor_Actuator"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Mastear.Views.Page_Monitor"
+             mc:Ignorable="d" Margin="13" Opacity="0.6" MouseUp="UserControl_MouseUp">
+
+    <UserControl.Style>
+        <Style>
+            <Style.Triggers>
+                <!-- 마우스 오버 이펙트 -->
+                <Trigger Property="UserControl.IsMouseOver" Value="True">
+                    <Setter Property="UserControl.Cursor" Value="Hand"/>
+                    <Trigger.EnterActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation To="1" Storyboard.TargetProperty="Opacity" Duration="0:0:0.2"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.EnterActions>
+
+                    <Trigger.ExitActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation To="0.6" Storyboard.TargetProperty="Opacity" Duration="0:0:0.2"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.ExitActions>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Style>
+
+    <Border CornerRadius="10" Height="260" Width="260" Background="Azure">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="5*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="4*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <!-- 썸네일 이미지 -->
+                <Image Name="xml_ThumbNail" Grid.Column="0"/>
+
+                <!-- 확률결과 -->
+                <Border CornerRadius="10" Grid.Column="1" Background="SkyBlue" Height="215" Name="xml_ProbabilityView" VerticalAlignment="Bottom" Grid.ColumnSpan="2"/>
+                <Viewbox VerticalAlignment="Bottom" Grid.Column="1">
+                    <TextBlock Name="xml_ProbabilityText" Text="100%"/>
+                </Viewbox>
+            </Grid>
+            <!-- 액추에이터 이름 -->
+            <TextBlock Name="xml_ActuatorName" Text="액추에이터명" FontSize="30" TextAlignment="Center" Grid.Row="1"/>
+        </Grid>
+    </Border>
+</UserControl>

@@ -1,0 +1,50 @@
+﻿<UserControl x:Class="Mastear.Views.Page_Actuator.Page_Actuator_CurrentSound"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Mastear.Views.Page_Actuator"
+             xmlns:publicControl="clr-namespace:Mastear.PublicControl"
+             mc:Ignorable="d" MouseUp="UserControl_MouseUp">
+
+    <UserControl.Style>
+        <Style>
+            <Style.Triggers>
+                <!-- 마우스 오버 이펙트 -->
+                <Trigger Property="UserControl.IsMouseOver" Value="True">
+                    <Setter Property="UserControl.Cursor" Value="Hand"/>
+                    <Trigger.EnterActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation To="1" Storyboard.TargetProperty="Opacity" Duration="0:0:0.2"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.EnterActions>
+
+                    <Trigger.ExitActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation To="0.6" Storyboard.TargetProperty="Opacity" Duration="0:0:0.2"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.ExitActions>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Style>
+
+    <Border CornerRadius="5" Name="xml_Body" Background="#33D3D3D3" Height="50" Width="600">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="20*"/>
+            </Grid.ColumnDefinitions>
+            <Image Name="xml_Icon" Grid.Column="0" Source="pack://application:,,,/Views/Page_Actuator/Resources/play.png"/>
+            <TextBlock Name="xml_SoundName" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" Text="Lorem" FontSize="30"/>
+            <StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Right">
+                <publicControl:StyledButton Width="70" Text="재생"/>
+                <publicControl:StyledButton Width="70" Text="삭제"/>
+            </StackPanel>
+        </Grid>
+    </Border>
+</UserControl>
